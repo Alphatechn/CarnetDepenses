@@ -1,0 +1,30 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# MAUI / Android / iOS / MacCatalyst build outputs
+**/bin/
+**/obj/
+*.user
+*.suo
+.vs/
+
+# Android
+*.apk
+*.aab
+*.keystore
+!debug.keystore
+
+# iOS / Mac
+*.ipa
+*.dSYM/
+DerivedData/
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Rider / VS Code
+.idea/
+*.userprefs

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarnetDepenses.MainPage"
+             x:Name="carnetDepenses"
+             Title="Carnet de depenses">
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="16" RowSpacing="8">
+        <VerticalStackLayout Spacing="8">
+            <Entry Placeholder="Libelle" Text="{Binding Libelle}" />
+            <Entry Placeholder="Montant" Keyboard="Numeric"
+                   Text="{Binding MontantTexte}" />
+            <Button Text="Ajouter" Command="{Binding AjouterCommand}" />
+        </VerticalStackLayout>
+        <Label Grid.Row="1" FontSize="20" FontAttributes="Bold"
+               Text="{Binding Total, StringFormat='Total : {0:N0} FCFA'}" />
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Depenses}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                        <Label Text="{Binding Libelle}" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="{Binding Montant}"
+                               VerticalOptions="Center" />
+                        <Button Grid.Column="2" Text="X"
+                                CommandParameter="{Binding .}"
+                                Command="{Binding Source={x:Reference carnetDepenses}, Path=BindingContext.SupprimerCommand}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
