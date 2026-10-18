@@ -4,28 +4,50 @@
              x:Class="CarnetDepenses.MainPage"
              x:Name="carnetDepenses"
              Title="Carnet de depenses">
-    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="16" RowSpacing="8">
+    <Grid RowDefinitions="Auto,Auto,*,Auto"
+            Padding="16"
+            RowSpacing="8">
         <VerticalStackLayout Spacing="8">
-            <Entry Placeholder="Libelle" Text="{Binding Libelle}" />
-            <Entry Placeholder="Montant" Keyboard="Numeric"
-                   Text="{Binding MontantTexte}" />
-            <Button Text="Ajouter" Command="{Binding AjouterCommand}" />
+            <Entry Placeholder="Libelle"
+                    Text="{Binding Libelle}"/>
+            <Entry Placeholder="Montant"
+                    Keyboard="Numeric"
+                   Text="{Binding MontantTexte}"/>
+            <Button Text="Ajouter"
+                    Command="{Binding AjouterCommand}"/>
         </VerticalStackLayout>
-        <Label Grid.Row="1" FontSize="20" FontAttributes="Bold"
-               Text="{Binding Total, StringFormat='Total : {0:N0} FCFA'}" />
-        <CollectionView Grid.Row="2" ItemsSource="{Binding Depenses}">
+        <Label Grid.Row="1"
+                FontSize="20"
+                FontAttributes="Bold"
+               Text="{Binding Total, StringFormat='Total : {0:N0} FCFA'}"/>
+        <CollectionView Grid.Row="2"
+                ItemsSource="{Binding Depenses}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
-                        <Label Text="{Binding Libelle}" VerticalOptions="Center" />
-                        <Label Grid.Column="1" Text="{Binding Montant}"
-                               VerticalOptions="Center" />
-                        <Button Grid.Column="2" Text="X"
+                    <Grid ColumnDefinitions="*,Auto,Auto"
+                            ColumnSpacing="8">
+                        <Label Text="{Binding Libelle}"
+                                VerticalOptions="Center"/>
+                        <Label Grid.Column="1"
+                                Text="{Binding Montant}"
+                               VerticalOptions="Center"/>
+                        <Button Grid.Column="2"
+                                Text="X"
                                 CommandParameter="{Binding .}"
-                                Command="{Binding Source={x:Reference carnetDepenses}, Path=BindingContext.SupprimerCommand}" />
+                                Command="{Binding Source={x:Reference carnetDepenses}, Path=BindingContext.SupprimerCommand}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <VerticalStackLayout Grid.Row="3"
+                Spacing="6">
+            <Button Text="Convertir le total en EUR"
+                    Command="{Binding ConvertirCommand}"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"/>
+            <Label Text="{Binding TotalConverti}"
+                    FontSize="16"/>
+            <Label Text="{Binding Message}"/>
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

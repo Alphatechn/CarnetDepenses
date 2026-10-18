@@ -24,6 +24,8 @@ namespace CarnetDepenses
             builder.Services.AddSingleton<DepensesViewModel>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<AppShell>();
+            builder.Services.AddSingleton(new HttpClient(new FakeApiHandler()));
+            builder.Services.AddSingleton<IApiService, ApiService>();
             return builder.Build();
         }
     }
